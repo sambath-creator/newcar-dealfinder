@@ -3,7 +3,7 @@ search:
     name: Dartford
     latitude: 51.4462
     longitude: 0.2169
-  radius_miles: 150
+  radius_miles: 200
   min_price_gbp: 25000
   max_price_gbp: 42000
   max_mileage: 5000
@@ -13,7 +13,7 @@ search:
 
 px:
   vehicle: "2016 Ford Grand C-Max"
-  estimated_value_gbp: 5500
+  estimated_value_gbp: 6000
 
 weights:
   purchase_price: 25
