@@ -23,7 +23,11 @@ def run(config_path, demo=False):
     ]
     all_listings = []
     for source in sources:
-        all_listings.extend(source.collect())
+        found = source.collect()
+        print(f"[DEBUG] {source.__class__.__name__} found {len(found)} listings.")
+        all_listings.extend(found)
+
+    print(f"[DEBUG] Total listings collected: {len(all_listings)}")
 
     deals = []
     history = History()
@@ -31,6 +35,7 @@ def run(config_path, demo=False):
         for listing in all_listings:
             ok, reason, distance = eligible(listing, cfg)
             if not ok:
+                print(f"[DEBUG] Rejected {listing.title}: {reason}")
                 continue
             deal = score_listing(listing, cfg, distance)
             if deal.classification in {"BUY","NEGOTIATE","WATCH"}:
@@ -38,6 +43,8 @@ def run(config_path, demo=False):
                 history.upsert(deal)
     finally:
         history.close()
+
+    print(f"[DEBUG] Total deals after filtering: {len(deals)}")
 
     deals.sort(key=lambda x: x.score, reverse=True)
     payload = [{

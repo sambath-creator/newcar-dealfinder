@@ -14,7 +14,7 @@ class MotorsSource(ListingSource):
         self.radius = radius
 
     def collect(self):
-        url = f"https://www.motors.co.uk/search/car/make/{self.make}/model/{self.model}/"
+        url = f"https://www.motors.co.uk/{self.make}/{self.model}/used-cars/"
         try:
             html = self.fetch_html(url)
         except Exception:
