@@ -9,7 +9,11 @@ from .sources.demo import DemoSource
 
 def run(config_path, demo=False):
     cfg = load_config(config_path)
-    sources = [DemoSource()] if demo else [DemoSource()]
+    from .sources.autotrader import AutoTraderSource
+    sources = [DemoSource()] if demo else [
+        AutoTraderSource(make="Skoda", model="Enyaq"),
+        AutoTraderSource(make="Kia", model="EV6")
+    ]
     all_listings = []
     for source in sources:
         all_listings.extend(source.collect())
