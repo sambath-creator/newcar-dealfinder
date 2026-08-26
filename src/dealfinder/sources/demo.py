@@ -26,6 +26,7 @@ class DemoSource(ListingSource):
                 market_price_gbp=41000,
                 specification_score=90,
                 dealer_score=90,
+                image_url="https://images.unsplash.com/photo-1629897048514-3dd741428f58?q=80&w=600&auto=format&fit=crop",
             ),
             VehicleListing(
                 source=self.name,
@@ -47,5 +48,6 @@ class DemoSource(ListingSource):
                 market_price_gbp=31000,
                 specification_score=88,
                 dealer_score=85,
+                image_url="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=600&auto=format&fit=crop",
             ),
         ]

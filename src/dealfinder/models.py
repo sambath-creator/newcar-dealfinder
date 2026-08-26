@@ -24,6 +24,7 @@ class VehicleListing:
     dealer_score: Optional[float] = None
     specification_score: Optional[float] = None
     source_id: str = ""
+    image_url: Optional[str] = None
     first_seen: datetime = field(default_factory=datetime.utcnow)
 
 @dataclass
