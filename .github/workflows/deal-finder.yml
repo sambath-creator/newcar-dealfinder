@@ -37,6 +37,7 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
           ALERT_FROM: ${{ secrets.ALERT_FROM }}
           ALERT_TO: ${{ secrets.ALERT_TO }}
+          PYTHONPATH: src
         run: python -m dealfinder --config config/config.yaml --demo
 
       - name: Upload deal history
