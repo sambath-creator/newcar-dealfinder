@@ -3,7 +3,7 @@ name: Car Deal Finder
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 6 * * *"  # 07:30 Europe/London during BST; UTC schedule shifts in winter
+    - cron: "30 6,18 * * *"  # 06:30 and 18:30 UTC
 
 permissions:
   contents: read

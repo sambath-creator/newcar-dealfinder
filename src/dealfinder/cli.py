@@ -42,7 +42,7 @@ def run(config_path, demo=False):
         "reasons": d.reasons,
     } for d in deals]
     print(json.dumps(payload, indent=2))
-    strong = [d for d in deals if d.classification in {"BUY","NEGOTIATE"}]
+    strong = [d for d in deals if d.classification in {"BUY","NEGOTIATE"}][:5]
     if strong:
         send_email(strong)
     return deals
