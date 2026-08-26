@@ -10,9 +10,16 @@ from .sources.demo import DemoSource
 def run(config_path, demo=False):
     cfg = load_config(config_path)
     from .sources.autotrader import AutoTraderSource
+    from .sources.motors import MotorsSource
+    from .sources.citygate import CitygateSource
+
     sources = [DemoSource()] if demo else [
         AutoTraderSource(make="Skoda", model="Enyaq"),
-        AutoTraderSource(make="Kia", model="EV6")
+        AutoTraderSource(make="Kia", model="EV6"),
+        MotorsSource(make="skoda", model="enyaq"),
+        MotorsSource(make="kia", model="ev6"),
+        CitygateSource(make="skoda", model="enyaq"),
+        CitygateSource(make="kia", model="ev6")
     ]
     all_listings = []
     for source in sources:
