@@ -16,18 +16,12 @@ class AutoTraderSource(ListingSource):
 
     def collect(self):
         url = f"https://www.autotrader.co.uk/car-search?postcode={self.postcode}&radius={self.radius}&make={self.make}&model={self.model}&sort=relevance"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
-        }
-        
         try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()
-        except requests.RequestException:
-            # Silently fail if blocked by anti-bot
+            html = self.fetch_html(url)
+        except Exception:
             return []
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
         listings = []
         
         # This is a generic parser for demonstration. AutoTrader HTML structure changes frequently.

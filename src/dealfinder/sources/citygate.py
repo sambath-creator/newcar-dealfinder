@@ -14,17 +14,12 @@ class CitygateSource(ListingSource):
     def collect(self):
         # Citygate is a major London/Home Counties dealer group for VW, Skoda, Kia
         url = f"https://www.citygate.co.uk/used-cars/{self.make}/{self.model}/"
-        headers = {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
-        }
-        
         try:
-            response = requests.get(url, headers=headers, timeout=10)
-            response.raise_for_status()
-        except requests.RequestException:
+            html = self.fetch_html(url)
+        except Exception:
             return []
 
-        soup = BeautifulSoup(response.text, "html.parser")
+        soup = BeautifulSoup(html, "html.parser")
         listings = []
         
         articles = soup.find_all("div", class_=re.compile("vehicle-card|listing-item"))
