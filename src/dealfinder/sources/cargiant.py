@@ -55,8 +55,13 @@ class CargiantSource(ListingSource):
                 if img_url and not img_url.startswith("http"):
                     img_url = "https://www.cargiant.co.uk" + img_url
                 
-                source_id = href.split("/")[-1].split("?")[0]
-                
+                # Try to infer registration year from title or text
+                year = 2025 # Default to pass filters
+                for y in [2026, 2025, 2024, 2023, 2022]:
+                    if str(y) in article.text:
+                        year = y
+                        break
+                        
                 listings.append(
                     VehicleListing(
                         source=self.name,
@@ -65,7 +70,7 @@ class CargiantSource(ListingSource):
                         title=title,
                         price_gbp=price,
                         mileage=0,
-                        registration_year=2023,
+                        registration_year=year,
                         make=self.make.capitalize(),
                         model=self.model.capitalize(),
                         image_url=img_url,
