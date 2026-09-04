@@ -12,6 +12,11 @@ def render_email(deals):
         
         badge_color = "#28a745" if d.classification == "BUY" else "#ffc107"
         
+        pre_reg_badge = ""
+        is_ev = l.model.lower() in ["enyaq", "ev6", "ioniq 5", "e-5008", "enyaq-iv"]
+        if l.mileage < 100 and d.discount_pct > 0 and is_ev:
+            pre_reg_badge = f'<span style="background:#6f42c1; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-right:10px;">🌟 Pre-Registered Deal</span>'
+            
         price_section = f"£{l.price_gbp:,.0f}"
         if d.effective_changeover_gbp is not None:
             price_section += f' <span style="font-size:0.9em; color:#555;">(Estimated PX changeover: £{d.effective_changeover_gbp:,.0f})</span>'
@@ -19,9 +24,10 @@ def render_email(deals):
         rows.append(
             f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif;">'
             f'{img_tag}'
-            f'<div style="display: flex; align-items: center; margin-bottom: 10px;">'
-            f'<span style="background:{badge_color}; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-right:10px;">{d.classification}</span>'
-            f'<h3 style="margin:0; font-size: 20px; color:#333;">{l.title}</h3>'
+            f'<div style="display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;">'
+            f'<span style="background:{badge_color}; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px;">{d.classification}</span>'
+            f'{pre_reg_badge}'
+            f'<h3 style="margin:0; font-size: 20px; color:#333; width:100%; margin-top:5px;">{l.title}</h3>'
             f'</div>'
             f'<h4 style="margin:0 0 10px 0; color:#e0245e; font-size:18px;">{price_section}</h4>'
             f'<div style="color:#666; line-height: 1.5; font-size:14px;">'

@@ -12,7 +12,7 @@ class DemoSource(ListingSource):
                 url="https://example.com/enyaq",
                 title="2025 Skoda Enyaq 85 Edition",
                 price_gbp=37995,
-                mileage=2200,
+                mileage=15,
                 registration_year=2025,
                 latitude=51.48,
                 longitude=0.05,
