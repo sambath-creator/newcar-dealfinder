@@ -12,7 +12,6 @@ def run(config_path, demo=False):
     from .sources.autotrader import AutoTraderSource
     from .sources.motors import MotorsSource
     from .sources.citygate import CitygateSource
-    from .sources.cargiant import CargiantSource
 
     sources = [DemoSource()] if demo else [
         AutoTraderSource(make="Skoda", model="Enyaq"),
@@ -39,11 +38,7 @@ def run(config_path, demo=False):
         CitygateSource(make="kia", model="ev6"),
         CitygateSource(make="kia", model="ev5"),
         CitygateSource(make="bmw", model="ix1"),
-        CitygateSource(make="volkswagen", model="id4"),
-        CargiantSource(make="skoda", model="enyaq-iv"),
-        CargiantSource(make="tesla", model="model-y"),
-        CargiantSource(make="volkswagen", model="id4"),
-        CargiantSource(make="audi", model="q4-e-tron"),
+        CitygateSource(make="volkswagen", model="id4")
     ]
     all_listings = []
     for source in sources:
