@@ -115,3 +115,57 @@ vehicles:
     warranty: 75
     running_cost: 90
     depreciation: 80
+  - name: "Tesla Model Y"
+    aliases: ["Model Y", "Model Y Long Range", "Model Y RWD"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 82
+    servicing: 95
+    warranty: 80
+    running_cost: 95
+    depreciation: 78
+  - name: "Volkswagen ID.4"
+    aliases: ["ID.4", "ID.4 Pro", "ID.4 Pro Match"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 86
+    servicing: 85
+    warranty: 75
+    running_cost: 90
+    depreciation: 80
+  - name: "Audi Q4 e-tron"
+    aliases: ["Q4 e-tron", "Q4", "Q4 40 e-tron"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 88
+    servicing: 83
+    warranty: 75
+    running_cost: 88
+    depreciation: 77
+  - name: "Nissan Ariya"
+    aliases: ["Ariya", "Ariya 87kWh", "Ariya Evolve"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 87
+    servicing: 86
+    warranty: 75
+    running_cost: 88
+    depreciation: 75
+  - name: "Toyota RAV4 PHEV"
+    aliases: ["RAV4", "RAV4 Plug-in", "RAV4 PHEV"]
+    propulsion: "PHEV"
+    seats: 5
+    durability: 96
+    servicing: 92
+    warranty: 98
+    running_cost: 88
+    depreciation: 85
+  - name: "Hyundai Tucson PHEV"
+    aliases: ["Tucson", "Tucson PHEV", "Tucson Plug-in Hybrid"]
+    propulsion: "PHEV"
+    seats: 5
+    durability: 88
+    servicing: 85
+    warranty: 88
+    running_cost: 85
+    depreciation: 82
