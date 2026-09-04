@@ -44,7 +44,6 @@ def run(config_path, demo=False):
         CargiantSource(make="tesla", model="model-y"),
         CargiantSource(make="volkswagen", model="id4"),
         CargiantSource(make="audi", model="q4-e-tron"),
-        DemoSource() # Fallback to guarantee an email
     ]
     all_listings = []
     for source in sources:
