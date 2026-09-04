@@ -17,10 +17,16 @@ def run(config_path, demo=False):
     sources = [DemoSource()] if demo else [
         AutoTraderSource(make="Skoda", model="Enyaq"),
         AutoTraderSource(make="Kia", model="EV6"),
+        AutoTraderSource(make="Kia", model="EV5"),
+        AutoTraderSource(make="BMW", model="iX1"),
         MotorsSource(make="skoda", model="enyaq"),
         MotorsSource(make="kia", model="ev6"),
+        MotorsSource(make="kia", model="ev5"),
+        MotorsSource(make="bmw", model="ix1"),
         CitygateSource(make="skoda", model="enyaq"),
         CitygateSource(make="kia", model="ev6"),
+        CitygateSource(make="kia", model="ev5"),
+        CitygateSource(make="bmw", model="ix1"),
         CargiantSource(make="skoda", model="enyaq-iv"),
         DemoSource() # Fallback to guarantee an email
     ]

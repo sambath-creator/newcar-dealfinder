@@ -97,3 +97,21 @@ vehicles:
     warranty: 92
     running_cost: 75
     depreciation: 84
+  - name: "Kia EV5"
+    aliases: ["EV5", "EV5 Air", "EV5 GT-Line"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 88
+    servicing: 87
+    warranty: 90
+    running_cost: 92
+    depreciation: 83
+  - name: "BMW iX1"
+    aliases: ["iX1", "iX1 xDrive30", "iX1 eDrive20", "iX1 M Sport"]
+    propulsion: "BEV"
+    seats: 5
+    durability: 85
+    servicing: 82
+    warranty: 75
+    running_cost: 90
+    depreciation: 80

@@ -13,7 +13,7 @@ def render_email(deals):
         badge_color = "#28a745" if d.classification == "BUY" else "#ffc107"
         
         pre_reg_badge = ""
-        is_ev = l.model.lower() in ["enyaq", "ev6", "ioniq 5", "e-5008", "enyaq-iv"]
+        is_ev = l.model.lower() in ["enyaq", "ev6", "ioniq 5", "e-5008", "enyaq-iv", "ev5", "ix1"]
         if l.mileage < 100 and d.discount_pct > 0 and is_ev:
             pre_reg_badge = f'<span style="background:#6f42c1; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-right:10px;">🌟 Pre-Registered Deal</span>'
             
