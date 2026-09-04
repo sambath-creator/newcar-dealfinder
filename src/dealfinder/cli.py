@@ -21,7 +21,8 @@ def run(config_path, demo=False):
         MotorsSource(make="kia", model="ev6"),
         CitygateSource(make="skoda", model="enyaq"),
         CitygateSource(make="kia", model="ev6"),
-        CargiantSource(make="skoda", model="enyaq-iv")
+        CargiantSource(make="skoda", model="enyaq-iv"),
+        DemoSource() # Fallback to guarantee an email
     ]
     all_listings = []
     for source in sources:
