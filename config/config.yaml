@@ -80,7 +80,7 @@ vehicles:
     running_cost: 92
     depreciation: 82
   - name: "Kia EV6"
-    aliases: ["EV6", "EV6 GT-Line", "EV6 GT Line"]
+    aliases: ["EV6", "EV6 GT-Line", "EV6 GT Line", "EV6 Air"]
     propulsion: "BEV"
     seats: 5
     durability: 88
