@@ -38,7 +38,8 @@ def run(config_path, demo=False):
         CitygateSource(make="kia", model="ev6"),
         CitygateSource(make="kia", model="ev5"),
         CitygateSource(make="bmw", model="ix1"),
-        CitygateSource(make="volkswagen", model="id4")
+        CitygateSource(make="volkswagen", model="id4"),
+        DemoSource() # Temporary fallback to guarantee email delivery while bots are blocked
     ]
     all_listings = []
     for source in sources:
