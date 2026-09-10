@@ -24,9 +24,11 @@ class ListingSource(ABC):
             else:
                 browser = p.chromium.launch(headless=True)
                 
-            page = browser.new_page(
+            context = browser.new_context(
+                ignore_https_errors=True,
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"
             )
+            page = context.new_page()
             
             try:
                 # wait_until="domcontentloaded" is faster, but "networkidle" guarantees React has loaded
