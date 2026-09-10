@@ -2,3 +2,4 @@ PyYAML>=6.0,<7
 requests
 beautifulsoup4
 playwright
+python-dotenv
