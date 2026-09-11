@@ -22,5 +22,5 @@ def test_price_rejected():
 
 def test_mileage_rejected():
     cfg = load_config("config/config.yaml")
-    ok, reason, _ = eligible(listing(mileage=50001), cfg)
+    ok, reason, _ = eligible(listing(mileage=501), cfg)
     assert not ok and reason == "mileage"

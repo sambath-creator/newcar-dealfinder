@@ -26,6 +26,12 @@ def render_email(deals):
         if d.effective_changeover_gbp is not None:
             price_section += f' <span style="font-size:0.9em; color:#555;">(Estimated PX changeover: £{d.effective_changeover_gbp:,.0f})</span>'
             
+        dealer_line = ""
+        if l.dealer:
+            dealer_line = f'<p style="margin:4px 0;"><strong>Dealer:</strong> {l.dealer} ({l.location}, {d.distance_miles:.0f} miles away)</p>'
+            
+        discount_line = f"<strong>Market Discount:</strong> {d.discount_pct:.1f}% &nbsp;|&nbsp; " if d.discount_pct > 0 else ""
+        
         rows.append(
             f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif; position: relative;">'
             f'<div style="position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end;">'
@@ -37,8 +43,8 @@ def render_email(deals):
             f'<h4 style="margin:0 0 10px 0; color:#e0245e; font-size:18px;">{price_section}</h4>'
             f'<div style="color:#666; line-height: 1.5; font-size:14px;">'
             f'<p style="margin:4px 0;"><strong>Score:</strong> {d.score}/100 &nbsp;|&nbsp; <strong>Mileage:</strong> {l.mileage:,} miles &nbsp;|&nbsp; <strong>Year:</strong> {l.registration_year}</p>'
-            f'<p style="margin:4px 0;"><strong>Dealer:</strong> {l.dealer} ({l.location}, {d.distance_miles:.0f} miles away)</p>'
-            f'<p style="margin:4px 0;"><strong>Market Discount:</strong> {d.discount_pct:.1f}% &nbsp;|&nbsp; <strong>Reasons:</strong> {reasons}</p>'
+            f'{dealer_line}'
+            f'<p style="margin:4px 0;">{discount_line}<strong>Reasons:</strong> {reasons}</p>'
             f'</div>'
             f'<div style="margin-top:15px;">'
             f'<a href="{l.url}" style="background:#007bff; color:#fff; text-decoration:none; padding:10px 20px; border-radius:6px; display:inline-block; font-weight:bold;">View Listing</a>'
