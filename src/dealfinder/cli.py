@@ -50,6 +50,8 @@ def run(config_path, demo=False):
     deals = []
     history = History()
     try:
+        # First filter out ineligible cars and score them
+        valid_deals = []
         for listing in all_listings:
             ok, reason, distance = eligible(listing, cfg)
             if not ok:
@@ -57,8 +59,23 @@ def run(config_path, demo=False):
                 continue
             deal = score_listing(listing, cfg, distance)
             if deal.classification in {"BUY","NEGOTIATE","WATCH"}:
-                deals.append(deal)
-                history.upsert(deal)
+                valid_deals.append(deal)
+                
+        # Deduplicate identical specs (same make, model, insurance, road tax, and features)
+        # keeping the one with the best combination of low price and low mileage.
+        # We can sort by price first, then mileage to pick the "best" one per group.
+        valid_deals.sort(key=lambda d: (d.listing.price_gbp, d.listing.mileage))
+        
+        seen_specs = set()
+        for deal in valid_deals:
+            l = deal.listing
+            spec_key = (l.make.lower(), l.model.lower(), l.insurance_group, l.road_tax, tuple(sorted(l.features)))
+            if spec_key in seen_specs:
+                print(f"[DEBUG] Deduplicated {l.title} (identical spec found cheaper/lower mileage)")
+                continue
+            seen_specs.add(spec_key)
+            deals.append(deal)
+            history.upsert(deal)
     finally:
         history.close()
 
@@ -78,7 +95,7 @@ def run(config_path, demo=False):
         "reasons": d.reasons,
     } for d in deals]
     print(json.dumps(payload, indent=2))
-    strong = [d for d in deals if d.classification in {"BUY","NEGOTIATE"}][:5]
+    strong = [d for d in deals if d.classification in {"BUY","NEGOTIATE"}][:20]
     if strong:
         send_email(strong)
     return deals

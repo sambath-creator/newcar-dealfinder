@@ -42,7 +42,10 @@ class CinchSource(ListingSource):
                         mileage=mileage,
                         registration_year=year,
                         make=make,
-                        model=model
+                        model=model,
+                        insurance_group="N/A",
+                        road_tax="£0", # EVs are currently £0
+                        features=[variant] if variant else []
                     )
                 )
             except Exception:

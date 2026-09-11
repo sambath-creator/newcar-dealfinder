@@ -69,7 +69,10 @@ class ArnoldClarkSource(ListingSource):
                         mileage=mileage,
                         registration_year=year,
                         make=self.make.capitalize(),
-                        model=self.model.capitalize()
+                        model=self.model.capitalize(),
+                        insurance_group=hit.get('insuranceGroupRange', 'N/A'),
+                        road_tax=f"£{hit.get('roadtax', 0)}",
+                        features=hit.get('bucketedFeatures', [])[:5]  # Take top 5 features
                     )
                 )
             except Exception:

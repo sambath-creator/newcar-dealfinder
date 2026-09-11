@@ -25,6 +25,9 @@ class VehicleListing:
     specification_score: Optional[float] = None
     source_id: str = ""
     image_url: Optional[str] = None
+    insurance_group: str = "N/A"
+    road_tax: str = "N/A"
+    features: list[str] = field(default_factory=list)
     first_seen: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
 @dataclass

@@ -35,6 +35,8 @@ def render_email(deals):
             
         discount_line = f"<strong>Market Discount:</strong> {d.discount_pct:.1f}% &nbsp;|&nbsp; " if d.discount_pct > 0 else ""
         
+        features_str = ", ".join(l.features) if l.features else "Standard Specs"
+        
         rows.append(
             f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif; position: relative;">'
             f'<div style="position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end;">'
@@ -46,6 +48,8 @@ def render_email(deals):
             f'<h4 style="margin:0 0 10px 0; color:#e0245e; font-size:18px;">{price_section}</h4>'
             f'<div style="color:#666; line-height: 1.5; font-size:14px;">'
             f'<p style="margin:4px 0;"><strong>Score:</strong> {d.score}/100 &nbsp;|&nbsp; <strong>Mileage:</strong> {l.mileage:,} miles &nbsp;|&nbsp; <strong>Year:</strong> {l.registration_year}</p>'
+            f'<p style="margin:4px 0;"><strong>Insurance Group:</strong> {l.insurance_group} &nbsp;|&nbsp; <strong>Road Tax:</strong> {l.road_tax}</p>'
+            f'<p style="margin:4px 0;"><strong>Key Features:</strong> {features_str}</p>'
             f'{dealer_line}'
             f'<p style="margin:4px 0;">{discount_line}<strong>Reasons:</strong> {reasons}</p>'
             f'</div>'
