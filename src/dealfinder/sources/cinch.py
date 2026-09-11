@@ -21,17 +21,38 @@ class CinchSource(ListingSource):
         listings = []
         for car in data.get("vehicleListings", []):
             try:
-                vehicle_id = car.get("vehicleId")
-                price = car.get("price")
-                year = car.get("vehicleYear")
-                mileage = car.get("mileage", 0)
-                make = car.get("make")
-                model = car.get("model")
-                variant = car.get("variant", "")
+                vehicle_id = car.get('vehicleId')
+                price = car.get('price')
+                if not price:
+                    continue
+                    
+                year = car.get('vehicleYear')
+                mileage = car.get('mileage', 0)
+                make = car.get('make')
+                model = car.get('model')
+                variant = car.get('variant', '')
+                title = f"{year} {make.capitalize()} {model.capitalize()} {variant}".strip()
+                car_url = f"https://www.cinch.co.uk/used-cars/{make.lower()}/{model.lower()}/details/{vehicle_id}"
                 
-                title = f"{year} {make} {model} {variant}".strip()
-                car_url = f"https://www.cinch.co.uk/used-cars/{self.make}/{self.model}/details/{vehicle_id}"
-
+                features = [variant] if variant else []
+                insurance_group = "N/A"
+                try:
+                    # Deep fetch for detailed features and insurance
+                    det_resp = requests.get(car_url, timeout=5)
+                    if det_resp.status_code == 200:
+                        from bs4 import BeautifulSoup
+                        import json
+                        soup = BeautifulSoup(det_resp.text, 'html.parser')
+                        script = soup.find('script', id='__NEXT_DATA__')
+                        if script:
+                            next_data = json.loads(script.string)
+                            vd = next_data.get('props', {}).get('pageProps', {}).get('vehicleData', {})
+                            if vd:
+                                features = vd.get('features', features)
+                                insurance_group = vd.get('insuranceGroupOneToFifty', insurance_group)
+                except Exception as deep_e:
+                    print(f"[DEBUG] Cinch deep fetch failed for {vehicle_id}: {deep_e}")
+                    
                 listings.append(
                     VehicleListing(
                         source=self.name,
@@ -44,9 +65,9 @@ class CinchSource(ListingSource):
                         make=make,
                         model=model,
                         fuel_type=car.get('fuelType', 'Unknown'),
-                        insurance_group="N/A",
+                        insurance_group=str(insurance_group),
                         road_tax="£0", # EVs are currently £0
-                        features=[variant] if variant else []
+                        features=features
                     )
                 )
             except Exception:
