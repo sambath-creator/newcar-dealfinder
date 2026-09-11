@@ -1,5 +1,5 @@
 search:
-  postcode: "DA1 5UB"
+  postcode: DA1 5UB
   centre:
     name: Dartford
     latitude: 51.4462
@@ -8,14 +8,16 @@ search:
   min_price_gbp: 25000
   max_price_gbp: 42000
   max_mileage: 500
-  registrations: [2023, 2024, 2025, 2026]
+  registrations:
+  - 2023
+  - 2024
+  - 2025
+  - 2026
   annual_mileage: 8000
   seven_seats_preferred: true
-
 px:
-  vehicle: "2016 Ford Grand C-Max"
+  vehicle: 2016 Ford Grand C-Max
   estimated_value_gbp: 6000
-
 weights:
   purchase_price: 25
   market_discount: 15
@@ -28,156 +30,321 @@ weights:
   insurance: 3
   dealer: 3
   depreciation: 4
-
 thresholds:
   buy: 82
   negotiate: 70
   watch: 55
-
 vehicles:
-  - name: "Skoda Enyaq 85"
-    aliases: ["Enyaq 85", "Enyaq 85 Edition", "Enyaq 85 SE L"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 88
-    servicing: 88
-    warranty: 80
-    running_cost: 92
-    depreciation: 80
-    list_price_gbp: 44540
-  - name: "Peugeot E-5008"
-    aliases: ["E-5008", "e-5008", "E-5008 GT", "E-5008 Allure"]
-    propulsion: "BEV"
-    seats: 7
-    durability: 78
-    servicing: 80
-    warranty: 82
-    running_cost: 90
-    depreciation: 76
-  - name: "JAECOO 7 SHS-P"
-    aliases: ["JAECOO 7 SHS", "JAECOO 7 SHS-P", "Jaecoo 7"]
-    propulsion: "PHEV"
-    seats: 5
-    durability: 70
-    servicing: 74
-    warranty: 90
-    running_cost: 86
-    depreciation: 65
-  - name: "OMODA 9"
-    aliases: ["OMODA 9", "Omoda 9 SHS"]
-    propulsion: "PHEV"
-    seats: 5
-    durability: 70
-    servicing: 74
-    warranty: 90
-    running_cost: 84
-    depreciation: 64
-  - name: "Hyundai Ioniq 5"
-    aliases: ["Ioniq 5", "Ioniq 5 Ultimate", "Ioniq 5 Ultimate 84kWh"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 88
-    servicing: 88
-    warranty: 88
-    running_cost: 92
-    depreciation: 82
-  - name: "Kia EV6"
-    aliases: ["EV6", "EV6 GT-Line", "EV6 GT Line", "EV6 Air"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 88
-    servicing: 87
-    warranty: 90
-    running_cost: 91
-    depreciation: 83
-    list_price_gbp: 45245
-  - name: "Kia Sportage HEV"
-    aliases: ["Sportage HEV", "Sportage Hybrid", "Sportage GT-Line"]
-    propulsion: "HEV"
-    seats: 5
-    durability: 88
-    servicing: 85
-    warranty: 92
-    running_cost: 75
-    depreciation: 84
-    list_price_gbp: 35000
-  - name: "Kia EV5"
-    aliases: ["EV5", "EV5 Air", "EV5 GT-Line"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 88
-    servicing: 87
-    warranty: 90
-    running_cost: 92
-    depreciation: 83
-    list_price_gbp: 41000
-  - name: "BMW iX1"
-    aliases: ["iX1", "iX1 xDrive30", "iX1 eDrive20", "iX1 M Sport"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 85
-    servicing: 82
-    warranty: 75
-    running_cost: 90
-    depreciation: 80
-    list_price_gbp: 44560
-  - name: "Tesla Model Y"
-    aliases: ["Model Y", "Model Y Long Range", "Model Y RWD"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 82
-    servicing: 95
-    warranty: 80
-    running_cost: 95
-    depreciation: 78
-    list_price_gbp: 44990
-  - name: "Volkswagen ID.4"
-    aliases: ["ID.4", "ID.4 Pro", "ID.4 Pro Match"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 86
-    servicing: 85
-    warranty: 75
-    running_cost: 90
-    depreciation: 80
-    list_price_gbp: 42640
-  - name: "Audi Q4 e-tron"
-    aliases: ["Q4 e-tron", "Q4", "Q4 40 e-tron"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 88
-    servicing: 83
-    warranty: 75
-    running_cost: 88
-    depreciation: 77
-    list_price_gbp: 43000
-  - name: "Nissan Ariya"
-    aliases: ["Ariya", "Ariya 87kWh", "Ariya Evolve"]
-    propulsion: "BEV"
-    seats: 5
-    durability: 87
-    servicing: 86
-    warranty: 75
-    running_cost: 88
-    depreciation: 75
-    list_price_gbp: 43845
-  - name: "Toyota RAV4 PHEV"
-    aliases: ["RAV4", "RAV4 Plug-in", "RAV4 PHEV"]
-    propulsion: "PHEV"
-    seats: 5
-    durability: 96
-    servicing: 92
-    warranty: 98
-    running_cost: 88
-    depreciation: 85
-    list_price_gbp: 44175
-  - name: "Hyundai Tucson PHEV"
-    aliases: ["Tucson", "Tucson PHEV", "Tucson Plug-in Hybrid"]
-    propulsion: "PHEV"
-    seats: 5
-    durability: 88
-    servicing: 85
-    warranty: 88
-    running_cost: 85
-    depreciation: 82
-    list_price_gbp: 39275
+- name: Skoda Enyaq 85
+  aliases:
+  - Enyaq 85
+  - Enyaq 85 Edition
+  - Enyaq 85 SE L
+  propulsion: BEV
+  seats: 5
+  durability: 88
+  servicing: 88
+  warranty: 80
+  running_cost: 92
+  depreciation: 80
+  list_price_gbp: 44540
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Peugeot E-5008
+  aliases:
+  - E-5008
+  - e-5008
+  - E-5008 GT
+  - E-5008 Allure
+  propulsion: BEV
+  seats: 7
+  durability: 78
+  servicing: 80
+  warranty: 82
+  running_cost: 90
+  depreciation: 76
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: JAECOO 7 SHS-P
+  aliases:
+  - JAECOO 7 SHS
+  - JAECOO 7 SHS-P
+  - Jaecoo 7
+  propulsion: PHEV
+  seats: 5
+  durability: 70
+  servicing: 74
+  warranty: 90
+  running_cost: 86
+  depreciation: 65
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: OMODA 9
+  aliases:
+  - OMODA 9
+  - Omoda 9 SHS
+  propulsion: PHEV
+  seats: 5
+  durability: 70
+  servicing: 74
+  warranty: 90
+  running_cost: 84
+  depreciation: 64
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Hyundai Ioniq 5
+  aliases:
+  - Ioniq 5
+  - Ioniq 5 Ultimate
+  - Ioniq 5 Ultimate 84kWh
+  propulsion: BEV
+  seats: 5
+  durability: 88
+  servicing: 88
+  warranty: 88
+  running_cost: 92
+  depreciation: 82
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Kia EV6
+  aliases:
+  - EV6
+  - EV6 GT-Line
+  - EV6 GT Line
+  - EV6 Air
+  propulsion: BEV
+  seats: 5
+  durability: 88
+  servicing: 87
+  warranty: 90
+  running_cost: 91
+  depreciation: 83
+  list_price_gbp: 45245
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Kia Sportage HEV
+  aliases:
+  - Sportage HEV
+  - Sportage Hybrid
+  - Sportage GT-Line
+  propulsion: HEV
+  seats: 5
+  durability: 88
+  servicing: 85
+  warranty: 92
+  running_cost: 75
+  depreciation: 84
+  list_price_gbp: 35000
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Kia EV5
+  aliases:
+  - EV5
+  - EV5 Air
+  - EV5 GT-Line
+  propulsion: BEV
+  seats: 5
+  durability: 88
+  servicing: 87
+  warranty: 90
+  running_cost: 92
+  depreciation: 83
+  list_price_gbp: 41000
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: BMW iX1
+  aliases:
+  - iX1
+  - iX1 xDrive30
+  - iX1 eDrive20
+  - iX1 M Sport
+  propulsion: BEV
+  seats: 5
+  durability: 85
+  servicing: 82
+  warranty: 75
+  running_cost: 90
+  depreciation: 80
+  list_price_gbp: 44560
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Tesla Model Y
+  aliases:
+  - Model Y
+  - Model Y Long Range
+  - Model Y RWD
+  propulsion: BEV
+  seats: 5
+  durability: 82
+  servicing: 95
+  warranty: 80
+  running_cost: 95
+  depreciation: 78
+  list_price_gbp: 44990
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Volkswagen ID.4
+  aliases:
+  - ID.4
+  - ID.4 Pro
+  - ID.4 Pro Match
+  propulsion: BEV
+  seats: 5
+  durability: 86
+  servicing: 85
+  warranty: 75
+  running_cost: 90
+  depreciation: 80
+  list_price_gbp: 42640
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Audi Q4 e-tron
+  aliases:
+  - Q4 e-tron
+  - Q4
+  - Q4 40 e-tron
+  propulsion: BEV
+  seats: 5
+  durability: 88
+  servicing: 83
+  warranty: 75
+  running_cost: 88
+  depreciation: 77
+  list_price_gbp: 43000
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Nissan Ariya
+  aliases:
+  - Ariya
+  - Ariya 87kWh
+  - Ariya Evolve
+  propulsion: BEV
+  seats: 5
+  durability: 87
+  servicing: 86
+  warranty: 75
+  running_cost: 88
+  depreciation: 75
+  list_price_gbp: 43845
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Toyota RAV4 PHEV
+  aliases:
+  - RAV4
+  - RAV4 Plug-in
+  - RAV4 PHEV
+  propulsion: PHEV
+  seats: 5
+  durability: 96
+  servicing: 92
+  warranty: 98
+  running_cost: 88
+  depreciation: 85
+  list_price_gbp: 44175
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth
+- name: Hyundai Tucson PHEV
+  aliases:
+  - Tucson
+  - Tucson PHEV
+  - Tucson Plug-in Hybrid
+  propulsion: PHEV
+  seats: 5
+  durability: 88
+  servicing: 85
+  warranty: 88
+  running_cost: 85
+  depreciation: 82
+  list_price_gbp: 39275
+  base_features:
+  - Touchscreen Infotainment
+  - Alloy Wheels
+  - LED Headlights
+  - Cruise Control
+  - Lane Assist
+  - Parking Sensors
+  - Bluetooth

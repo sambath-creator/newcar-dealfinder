@@ -73,17 +73,18 @@ def run(config_path, demo=False):
             if deal.classification in {"BUY","NEGOTIATE","WATCH"}:
                 valid_deals.append(deal)
                 
-        # Deduplicate identical specs (same make, model, insurance, road tax, and features)
-        # keeping the one with the best combination of low price and low mileage.
-        # We can sort by price first, then mileage to pick the "best" one per group.
+        # Deduplicate identical cars (same make, model, year, price, and mileage)
+        # to prevent the exact same physical car from appearing multiple times across different sites.
         valid_deals.sort(key=lambda d: (d.listing.price_gbp, d.listing.mileage))
         
         seen_specs = set()
         for deal in valid_deals:
             l = deal.listing
-            spec_key = (l.make.lower(), l.model.lower(), l.insurance_group, l.road_tax, tuple(sorted(l.features)))
+            # Aggressive deduplication for the *exact same physical car* appearing on different aggregators
+            # We group by price and mileage (and make/model) since clones will have identical values here.
+            spec_key = (l.make.lower(), l.model.lower(), l.registration_year, l.price_gbp, l.mileage)
             if spec_key in seen_specs:
-                print(f"[DEBUG] Deduplicated {l.title} (identical spec found cheaper/lower mileage)")
+                print(f"[DEBUG] Deduplicated physical clone: {l.title} from {l.source}")
                 continue
             seen_specs.add(spec_key)
             deals.append(deal)

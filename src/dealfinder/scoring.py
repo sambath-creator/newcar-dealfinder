@@ -7,6 +7,12 @@ def score_listing(listing: VehicleListing, cfg: dict, distance_miles: float | No
     vehicle_cfg = _match_vehicle(listing, cfg["vehicles"])
     if vehicle_cfg:
         base = vehicle_cfg
+        # Supplement with manufacturer base features
+        if "base_features" in base:
+            existing = {f.lower() for f in listing.features}
+            for bf in base["base_features"]:
+                if bf.lower() not in existing:
+                    listing.features.append(bf)
     else:
         base = {
             "seats": listing.seats or 5, "durability": 70, "servicing": 70,
