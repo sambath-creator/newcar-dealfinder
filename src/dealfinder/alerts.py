@@ -37,11 +37,22 @@ def render_email(deals):
         
         features_str = ", ".join(l.features) if l.features else "Standard Specs"
         
+        fuel_str = l.fuel_type.lower()
+        if "electric" in fuel_str or "bev" in fuel_str:
+            fuel_badge = f'<span style="background:#17a2b8; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">⚡ EV</span>'
+        elif "plug" in fuel_str or "phev" in fuel_str:
+            fuel_badge = f'<span style="background:#28a745; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">🔌 PHEV</span>'
+        elif "hybrid" in fuel_str or "hev" in fuel_str:
+            fuel_badge = f'<span style="background:#85c1e9; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">🔋 Hybrid</span>'
+        else:
+            fuel_badge = f'<span style="background:#6c757d; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">⛽ {l.fuel_type.capitalize()}</span>'
+        
         rows.append(
             f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif; position: relative;">'
             f'<div style="position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end;">'
             f'{class_badge}'
             f'{pre_reg_badge}'
+            f'{fuel_badge}'
             f'</div>'
             f'{img_tag}'
             f'<h3 style="margin:0; font-size: 20px; color:#333; width:75%; margin-top:5px; margin-bottom:10px;">{l.title}</h3>'

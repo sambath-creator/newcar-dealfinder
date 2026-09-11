@@ -43,6 +43,7 @@ class CinchSource(ListingSource):
                         registration_year=year,
                         make=make,
                         model=model,
+                        fuel_type=car.get('fuelType', 'Unknown'),
                         insurance_group="N/A",
                         road_tax="£0", # EVs are currently £0
                         features=[variant] if variant else []

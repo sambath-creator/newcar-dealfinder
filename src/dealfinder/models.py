@@ -25,6 +25,7 @@ class VehicleListing:
     specification_score: Optional[float] = None
     source_id: str = ""
     image_url: Optional[str] = None
+    fuel_type: str = "Unknown"
     insurance_group: str = "N/A"
     road_tax: str = "N/A"
     features: list[str] = field(default_factory=list)
