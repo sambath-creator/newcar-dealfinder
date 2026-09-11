@@ -15,20 +15,25 @@ def render_email(deals):
         pre_reg_badge = ""
         is_ev = l.model.lower() in ["enyaq", "ev6", "ioniq 5", "e-5008", "enyaq-iv", "ev5", "ix1", "model y", "id.4", "id4", "q4 e-tron", "ariya"]
         if l.mileage < 100 and d.discount_pct > 0 and is_ev:
-            pre_reg_badge = f'<span style="background:#6f42c1; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-right:10px;">🌟 Pre-Registered Deal</span>'
+            pre_reg_badge = f'<span style="background:#6f42c1; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">🌟 Pre-Registered</span>'
+            
+        # Hide NEGOTIATE badge if it's the only badge
+        class_badge = ""
+        if d.classification != "NEGOTIATE" or pre_reg_badge:
+            class_badge = f'<span style="background:{badge_color}; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">{d.classification}</span>'
             
         price_section = f"£{l.price_gbp:,.0f}"
         if d.effective_changeover_gbp is not None:
             price_section += f' <span style="font-size:0.9em; color:#555;">(Estimated PX changeover: £{d.effective_changeover_gbp:,.0f})</span>'
             
         rows.append(
-            f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif;">'
-            f'{img_tag}'
-            f'<div style="display: flex; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;">'
-            f'<span style="background:{badge_color}; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px;">{d.classification}</span>'
+            f'<div style="background:#fff; border:1px solid #ddd; border-radius:12px; padding:20px; margin-bottom:20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); font-family: sans-serif; position: relative;">'
+            f'<div style="position: absolute; top: 15px; right: 15px; display: flex; flex-direction: column; align-items: flex-end;">'
+            f'{class_badge}'
             f'{pre_reg_badge}'
-            f'<h3 style="margin:0; font-size: 20px; color:#333; width:100%; margin-top:5px;">{l.title}</h3>'
             f'</div>'
+            f'{img_tag}'
+            f'<h3 style="margin:0; font-size: 20px; color:#333; width:75%; margin-top:5px; margin-bottom:10px;">{l.title}</h3>'
             f'<h4 style="margin:0 0 10px 0; color:#e0245e; font-size:18px;">{price_section}</h4>'
             f'<div style="color:#666; line-height: 1.5; font-size:14px;">'
             f'<p style="margin:4px 0;"><strong>Score:</strong> {d.score}/100 &nbsp;|&nbsp; <strong>Mileage:</strong> {l.mileage:,} miles &nbsp;|&nbsp; <strong>Year:</strong> {l.registration_year}</p>'

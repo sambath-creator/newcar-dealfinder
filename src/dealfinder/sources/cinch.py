@@ -30,7 +30,7 @@ class CinchSource(ListingSource):
                 variant = car.get("variant", "")
                 
                 title = f"{year} {make} {model} {variant}".strip()
-                car_url = f"https://www.cinch.co.uk/used-cars/{self.make}/{self.model}/{vehicle_id}"
+                car_url = f"https://www.cinch.co.uk/used-cars/{self.make}/{self.model}/details/{vehicle_id}"
 
                 listings.append(
                     VehicleListing(
