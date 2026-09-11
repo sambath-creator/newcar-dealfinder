@@ -6,8 +6,8 @@ search:
   radius_miles: 200
   min_price_gbp: 25000
   max_price_gbp: 42000
-  max_mileage: 5000
-  registrations: [2025, 2026]
+  max_mileage: 50000
+  registrations: [2023, 2024, 2025, 2026]
   annual_mileage: 8000
   seven_seats_preferred: true
 

@@ -20,56 +20,66 @@ class MotorsSource(ListingSource):
         except Exception:
             return []
 
+        import json
         soup = BeautifulSoup(html, "html.parser")
         listings = []
         
-        # Motors.co.uk usually uses generic classes for items. 
-        articles = soup.find_all("article", class_=re.compile("ResultItem"))
-        if not articles:
-             articles = soup.find_all("div", {"data-testing": "search-result"})
-            
-        for article in articles:
+        # Motors.co.uk embeds the actual car listings inside schema.org JSON-LD blocks!
+        script_tags = soup.find_all("script", type="application/ld+json")
+        for tag in script_tags:
+            if not tag.string:
+                continue
             try:
-                a_tag = article.find("a")
-                if not a_tag:
-                    continue
-                href = a_tag["href"]
-                if not href.startswith("http"):
-                    href = "https://www.motors.co.uk" + href
-                
-                title_tag = article.find(["h3", "span"], class_=re.compile(r"title|name", re.IGNORECASE))
-                title = title_tag.text.strip() if title_tag else f"{self.make.capitalize()} {self.model.capitalize()}"
-                
-                price_tag = article.find(text=re.compile(r'£\d+,\d+'))
-                if not price_tag:
-                    price_tag = article.find(string=re.compile(r'£\d+,\d+'))
-                if not price_tag:
-                    continue
-                price = int(re.sub(r'[^\d]', '', price_tag.text))
-
-                # Try to infer registration year
-                year = 2025 # Default to pass filters
-                for y in [2026, 2025, 2024, 2023, 2022]:
-                    if str(y) in article.text:
-                        year = y
-                        break
-                        
-                source_id = href.split("/")[-2] if href.endswith("/") else href.split("/")[-1]
-                
-                listings.append(
-                    VehicleListing(
-                        source=self.name,
-                        source_id=f"mt-{source_id}",
-                        url=href,
-                        title=title,
-                        price_gbp=price,
-                        mileage=0,
-                        registration_year=year,
-                        make=self.make.capitalize(),
-                        model=self.model.capitalize()
-                    )
-                )
-            except Exception:
+                data = json.loads(tag.string)
+            except:
                 continue
                 
+            # data could be a list or dict
+            if isinstance(data, dict):
+                data = [data]
+                
+            for block in data:
+                # Some are wrapped in ItemList
+                if block.get("@type") == "ItemList":
+                    items = [i.get("item", {}) for i in block.get("itemListElement", [])]
+                else:
+                    items = [block]
+                    
+                for item in items:
+                    if item.get("@type") != "Product":
+                        continue
+                    
+                    title = item.get("name", "")
+                    url = item.get("url", "")
+                    if not url or not title:
+                        continue
+                        
+                    offers = item.get("offers", {})
+                    price = offers.get("price")
+                    if not price:
+                        continue
+                        
+                    # Try to infer registration year
+                    year = 2025 # Default
+                    for y in [2026, 2025, 2024, 2023, 2022]:
+                        if str(y) in title:
+                            year = y
+                            break
+                            
+                    source_id = url.split("/")[-2] if url.endswith("/") else url.split("/")[-1]
+                    
+                    listings.append(
+                        VehicleListing(
+                            source=self.name,
+                            source_id=f"mt-{source_id}",
+                            url=url,
+                            title=title,
+                            price_gbp=int(price),
+                            mileage=0, # Need deeper scraping for mileage
+                            registration_year=year,
+                            make=self.make.capitalize(),
+                            model=self.model.capitalize()
+                        )
+                    )
+                    
         return listings
