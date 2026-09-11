@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 @dataclass
@@ -25,7 +25,7 @@ class VehicleListing:
     specification_score: Optional[float] = None
     source_id: str = ""
     image_url: Optional[str] = None
-    first_seen: datetime = field(default_factory=datetime.utcnow)
+    first_seen: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
 
 @dataclass
 class ScoredDeal:
