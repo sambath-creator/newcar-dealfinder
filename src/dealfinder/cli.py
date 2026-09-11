@@ -12,6 +12,7 @@ def run(config_path, demo=False):
     from .sources.autotrader import AutoTraderSource
     from .sources.motors import MotorsSource
     from .sources.cinch import CinchSource
+    from .sources.arnoldclark import ArnoldClarkSource
 
     postcode = cfg["search"].get("postcode", "DA1 5UB")
     radius = cfg["search"].get("radius_miles", 200)
@@ -26,7 +27,17 @@ def run(config_path, demo=False):
         CinchSource(make="audi", model="q4 e-tron"),
         CinchSource(make="nissan", model="ariya"),
         CinchSource(make="toyota", model="rav4"),
-        CinchSource(make="hyundai", model="tucson")
+        CinchSource(make="hyundai", model="tucson"),
+        ArnoldClarkSource(make="skoda", model="enyaq"),
+        ArnoldClarkSource(make="kia", model="ev6"),
+        ArnoldClarkSource(make="kia", model="ev5"),
+        ArnoldClarkSource(make="bmw", model="ix1"),
+        ArnoldClarkSource(make="tesla", model="model y"),
+        ArnoldClarkSource(make="volkswagen", model="id4"),
+        ArnoldClarkSource(make="audi", model="q4 e-tron"),
+        ArnoldClarkSource(make="nissan", model="ariya"),
+        ArnoldClarkSource(make="toyota", model="rav4"),
+        ArnoldClarkSource(make="hyundai", model="tucson")
     ]
     all_listings = []
     for source in sources:
