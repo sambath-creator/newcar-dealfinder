@@ -23,7 +23,10 @@ def render_email(deals):
             class_badge = f'<span style="background:{badge_color}; color:#fff; padding:4px 8px; border-radius:12px; font-weight:bold; font-size:12px; margin-bottom:5px;">{d.classification}</span>'
             
         price_section = f"£{l.price_gbp:,.0f}"
-        if d.effective_changeover_gbp is not None:
+        if getattr(d, 'original_list_price_gbp', None) is not None:
+            savings = d.original_list_price_gbp - l.price_gbp
+            price_section += f' <span style="font-size:0.9em; color:#555;">(Original List Price: £{d.original_list_price_gbp:,.0f} | You save: £{savings:,.0f})</span>'
+        elif d.effective_changeover_gbp is not None:
             price_section += f' <span style="font-size:0.9em; color:#555;">(Estimated PX changeover: £{d.effective_changeover_gbp:,.0f})</span>'
             
         dealer_line = ""

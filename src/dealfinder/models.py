@@ -36,3 +36,4 @@ class ScoredDeal:
     classification: str
     reasons: list[str]
     effective_changeover_gbp: Optional[float] = None
+    original_list_price_gbp: Optional[float] = None

@@ -65,8 +65,11 @@ def score_listing(listing: VehicleListing, cfg: dict, distance_miles: float | No
 
     px = cfg.get("px", {}).get("estimated_value_gbp")
     changeover = listing.price_gbp - px if px else None
+    
+    list_price = base.get("list_price_gbp")
+    
     return ScoredDeal(listing, distance_miles or 0, discount_pct, round(total, 1),
-                      classification, reasons, changeover)
+                      classification, reasons, changeover, list_price)
 
 def _match_vehicle(listing, vehicles):
     text = f"{listing.title} {listing.make} {listing.model} {listing.trim}".lower()

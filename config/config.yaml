@@ -44,6 +44,7 @@ vehicles:
     warranty: 80
     running_cost: 92
     depreciation: 80
+    list_price_gbp: 44540
   - name: "Peugeot E-5008"
     aliases: ["E-5008", "e-5008", "E-5008 GT", "E-5008 Allure"]
     propulsion: "BEV"
@@ -89,6 +90,7 @@ vehicles:
     warranty: 90
     running_cost: 91
     depreciation: 83
+    list_price_gbp: 45245
   - name: "Kia Sportage HEV"
     aliases: ["Sportage HEV", "Sportage Hybrid", "Sportage GT-Line"]
     propulsion: "HEV"
@@ -98,6 +100,7 @@ vehicles:
     warranty: 92
     running_cost: 75
     depreciation: 84
+    list_price_gbp: 35000
   - name: "Kia EV5"
     aliases: ["EV5", "EV5 Air", "EV5 GT-Line"]
     propulsion: "BEV"
@@ -107,6 +110,7 @@ vehicles:
     warranty: 90
     running_cost: 92
     depreciation: 83
+    list_price_gbp: 41000
   - name: "BMW iX1"
     aliases: ["iX1", "iX1 xDrive30", "iX1 eDrive20", "iX1 M Sport"]
     propulsion: "BEV"
@@ -116,6 +120,7 @@ vehicles:
     warranty: 75
     running_cost: 90
     depreciation: 80
+    list_price_gbp: 44560
   - name: "Tesla Model Y"
     aliases: ["Model Y", "Model Y Long Range", "Model Y RWD"]
     propulsion: "BEV"
@@ -125,6 +130,7 @@ vehicles:
     warranty: 80
     running_cost: 95
     depreciation: 78
+    list_price_gbp: 44990
   - name: "Volkswagen ID.4"
     aliases: ["ID.4", "ID.4 Pro", "ID.4 Pro Match"]
     propulsion: "BEV"
@@ -134,6 +140,7 @@ vehicles:
     warranty: 75
     running_cost: 90
     depreciation: 80
+    list_price_gbp: 42640
   - name: "Audi Q4 e-tron"
     aliases: ["Q4 e-tron", "Q4", "Q4 40 e-tron"]
     propulsion: "BEV"
@@ -143,6 +150,7 @@ vehicles:
     warranty: 75
     running_cost: 88
     depreciation: 77
+    list_price_gbp: 43000
   - name: "Nissan Ariya"
     aliases: ["Ariya", "Ariya 87kWh", "Ariya Evolve"]
     propulsion: "BEV"
@@ -152,6 +160,7 @@ vehicles:
     warranty: 75
     running_cost: 88
     depreciation: 75
+    list_price_gbp: 43845
   - name: "Toyota RAV4 PHEV"
     aliases: ["RAV4", "RAV4 Plug-in", "RAV4 PHEV"]
     propulsion: "PHEV"
@@ -161,6 +170,7 @@ vehicles:
     warranty: 98
     running_cost: 88
     depreciation: 85
+    list_price_gbp: 44175
   - name: "Hyundai Tucson PHEV"
     aliases: ["Tucson", "Tucson PHEV", "Tucson Plug-in Hybrid"]
     propulsion: "PHEV"
@@ -170,3 +180,4 @@ vehicles:
     warranty: 88
     running_cost: 85
     depreciation: 82
+    list_price_gbp: 39275
