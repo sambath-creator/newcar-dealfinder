@@ -11,34 +11,40 @@ def run(config_path, demo=False):
     cfg = load_config(config_path)
     from .sources.autotrader import AutoTraderSource
     from .sources.motors import MotorsSource
-    from .sources.citygate import CitygateSource
+    from .sources.cinch import CinchSource
+
+    postcode = cfg["search"].get("postcode", "DA1 5UB")
+    radius = cfg["search"].get("radius_miles", 200)
 
     sources = [DemoSource()] if demo else [
-        AutoTraderSource(make="Skoda", model="Enyaq"),
-        AutoTraderSource(make="Kia", model="EV6"),
-        AutoTraderSource(make="Kia", model="EV5"),
-        AutoTraderSource(make="BMW", model="iX1"),
-        AutoTraderSource(make="Tesla", model="Model Y"),
-        AutoTraderSource(make="Volkswagen", model="ID.4"),
-        AutoTraderSource(make="Audi", model="Q4 e-tron"),
-        AutoTraderSource(make="Nissan", model="Ariya"),
-        AutoTraderSource(make="Toyota", model="RAV4"),
-        AutoTraderSource(make="Hyundai", model="Tucson"),
-        MotorsSource(make="skoda", model="enyaq"),
-        MotorsSource(make="kia", model="ev6"),
-        MotorsSource(make="kia", model="ev5"),
-        MotorsSource(make="bmw", model="ix1"),
-        MotorsSource(make="tesla", model="model-y"),
-        MotorsSource(make="volkswagen", model="id4"),
-        MotorsSource(make="audi", model="q4-e-tron"),
-        MotorsSource(make="nissan", model="ariya"),
-        MotorsSource(make="toyota", model="rav4"),
-        MotorsSource(make="hyundai", model="tucson"),
-        CitygateSource(make="skoda", model="enyaq"),
-        CitygateSource(make="kia", model="ev6"),
-        CitygateSource(make="kia", model="ev5"),
-        CitygateSource(make="bmw", model="ix1"),
-        CitygateSource(make="volkswagen", model="id4")
+        AutoTraderSource(postcode=postcode, radius=radius, make="Skoda", model="Enyaq"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Kia", model="EV6"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Kia", model="EV5"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="BMW", model="iX1"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Tesla", model="Model Y"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Volkswagen", model="ID.4"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Audi", model="Q4 e-tron"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Nissan", model="Ariya"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Toyota", model="RAV4"),
+        AutoTraderSource(postcode=postcode, radius=radius, make="Hyundai", model="Tucson"),
+        MotorsSource(postcode=postcode, radius=radius, make="skoda", model="enyaq"),
+        MotorsSource(postcode=postcode, radius=radius, make="kia", model="ev6"),
+        MotorsSource(postcode=postcode, radius=radius, make="kia", model="ev5"),
+        MotorsSource(postcode=postcode, radius=radius, make="bmw", model="ix1"),
+        MotorsSource(postcode=postcode, radius=radius, make="tesla", model="model-y"),
+        MotorsSource(postcode=postcode, radius=radius, make="volkswagen", model="id4"),
+        MotorsSource(postcode=postcode, radius=radius, make="audi", model="q4-e-tron"),
+        MotorsSource(postcode=postcode, radius=radius, make="nissan", model="ariya"),
+        MotorsSource(postcode=postcode, radius=radius, make="toyota", model="rav4"),
+        MotorsSource(postcode=postcode, radius=radius, make="hyundai", model="tucson"),
+        CinchSource(make="skoda", model="enyaq"),
+        CinchSource(make="kia", model="ev6"),
+        CinchSource(make="kia", model="ev5"),
+        CinchSource(make="bmw", model="ix1"),
+        CinchSource(make="tesla", model="model y"),
+        CinchSource(make="volkswagen", model="id4"),
+        CinchSource(make="audi", model="q4 e-tron"),
+        CinchSource(make="nissan", model="ariya")
     ]
     all_listings = []
     for source in sources:

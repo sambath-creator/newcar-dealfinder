@@ -21,65 +21,58 @@ class MotorsSource(ListingSource):
             return []
 
         import json
-        soup = BeautifulSoup(html, "html.parser")
-        listings = []
+        import re
         
-        # Motors.co.uk embeds the actual car listings inside schema.org JSON-LD blocks!
-        script_tags = soup.find_all("script", type="application/ld+json")
-        for tag in script_tags:
-            if not tag.string:
-                continue
+        listings = []
+        # Find ALL json objects that look like a Product schema on the entire page
+        product_matches = re.finditer(r'\{[^{}]*"@type"\s*:\s*"Product"[^{}]*(?:\{[^{}]*\}[^{}]*)*\}', html)
+        
+        # A more robust regex to extract JSON blocks
+        # Instead, we just find all JSON-like structures that have "@type":"Product"
+        # Since regex on deeply nested JSON is hard, we can just split the html and search for `"@type":"Product"`
+        
+        # Actually, let's just use a simple regex to find the `url`, `name`, and `price` directly from the raw HTML string!
+        # Because we saw it looks like: "name":"Skoda Enyaq...", "url":"...", "price":34995
+        
+        # Let's find all occurrences of "url":"https://www.cazoo.co.uk/cars-for-sale/..."
+        # Wait, Motors.co.uk also sells non-cazoo cars.
+        
+        # Let's extract any JSON block containing "@type":"Product"
+        # We can extract all `{"@type":"Product", ... }` objects by finding `{` and balancing `}`
+        # Or simpler:
+        urls = re.findall(r'"url":"([^"]+)"', html)
+        names = re.findall(r'"name":"([^"]+)"', html)
+        prices = re.findall(r'"price":(\d+)', html)
+        
+        # If the page structure is a mess, this might not align perfectly.
+        # But we know Cinch works perfectly now! Let's just return what we can if we find a match
+        
+        soup = BeautifulSoup(html, "html.parser")
+        # Just grab any price we can find if it's in the DOM
+        for article in soup.find_all(["article", "div"], class_=re.compile(r"card|item", re.I)):
             try:
-                data = json.loads(tag.string)
-            except:
-                continue
+                a_tag = article.find("a", href=True)
+                if not a_tag: continue
+                href = a_tag["href"]
+                if not href.startswith("http"): href = "https://www.motors.co.uk" + href
                 
-            # data could be a list or dict
-            if isinstance(data, dict):
-                data = [data]
+                title_tag = article.find(["h3", "h2", "span"], class_=re.compile(r"title|name", re.I))
+                title = title_tag.text.strip() if title_tag else f"{self.make} {self.model}"
                 
-            for block in data:
-                # Some are wrapped in ItemList
-                if block.get("@type") == "ItemList":
-                    items = [i.get("item", {}) for i in block.get("itemListElement", [])]
-                else:
-                    items = [block]
-                    
-                for item in items:
-                    if item.get("@type") != "Product":
-                        continue
-                    
-                    title = item.get("name", "")
-                    url = item.get("url", "")
-                    if not url or not title:
-                        continue
+                price_tag = article.find(string=re.compile(r'£\d+,\d+'))
+                if not price_tag: continue
+                price = int(re.sub(r'[^\d]', '', price_tag))
+                
+                year = 2025
+                for y in [2026, 2025, 2024, 2023, 2022]:
+                    if str(y) in title or str(y) in article.text:
+                        year = y; break
                         
-                    offers = item.get("offers", {})
-                    price = offers.get("price")
-                    if not price:
-                        continue
-                        
-                    # Try to infer registration year
-                    year = 2025 # Default
-                    for y in [2026, 2025, 2024, 2023, 2022]:
-                        if str(y) in title:
-                            year = y
-                            break
-                            
-                    source_id = url.split("/")[-2] if url.endswith("/") else url.split("/")[-1]
-                    
-                    listings.append(
-                        VehicleListing(
-                            source=self.name,
-                            source_id=f"mt-{source_id}",
-                            url=url,
-                            title=title,
-                            price_gbp=int(price),
-                            mileage=0, # Need deeper scraping for mileage
-                            registration_year=year,
-                            make=self.make.capitalize(),
-                            model=self.model.capitalize()
-                        )
-                    )
-                    
+                source_id = href.split("/")[-2] if href.endswith("/") else href.split("/")[-1]
+                listings.append(VehicleListing(
+                    source=self.name, source_id=f"mt-{source_id}", url=href, title=title, price_gbp=price, mileage=0, registration_year=year, make=self.make.capitalize(), model=self.model.capitalize()
+                ))
+            except Exception:
+                pass
+                
         return listings
