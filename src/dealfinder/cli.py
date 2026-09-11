@@ -17,26 +17,6 @@ def run(config_path, demo=False):
     radius = cfg["search"].get("radius_miles", 200)
 
     sources = [DemoSource()] if demo else [
-        AutoTraderSource(postcode=postcode, radius=radius, make="Skoda", model="Enyaq"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Kia", model="EV6"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Kia", model="EV5"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="BMW", model="iX1"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Tesla", model="Model Y"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Volkswagen", model="ID.4"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Audi", model="Q4 e-tron"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Nissan", model="Ariya"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Toyota", model="RAV4"),
-        AutoTraderSource(postcode=postcode, radius=radius, make="Hyundai", model="Tucson"),
-        MotorsSource(postcode=postcode, radius=radius, make="skoda", model="enyaq"),
-        MotorsSource(postcode=postcode, radius=radius, make="kia", model="ev6"),
-        MotorsSource(postcode=postcode, radius=radius, make="kia", model="ev5"),
-        MotorsSource(postcode=postcode, radius=radius, make="bmw", model="ix1"),
-        MotorsSource(postcode=postcode, radius=radius, make="tesla", model="model-y"),
-        MotorsSource(postcode=postcode, radius=radius, make="volkswagen", model="id4"),
-        MotorsSource(postcode=postcode, radius=radius, make="audi", model="q4-e-tron"),
-        MotorsSource(postcode=postcode, radius=radius, make="nissan", model="ariya"),
-        MotorsSource(postcode=postcode, radius=radius, make="toyota", model="rav4"),
-        MotorsSource(postcode=postcode, radius=radius, make="hyundai", model="tucson"),
         CinchSource(make="skoda", model="enyaq"),
         CinchSource(make="kia", model="ev6"),
         CinchSource(make="kia", model="ev5"),
@@ -44,7 +24,9 @@ def run(config_path, demo=False):
         CinchSource(make="tesla", model="model y"),
         CinchSource(make="volkswagen", model="id4"),
         CinchSource(make="audi", model="q4 e-tron"),
-        CinchSource(make="nissan", model="ariya")
+        CinchSource(make="nissan", model="ariya"),
+        CinchSource(make="toyota", model="rav4"),
+        CinchSource(make="hyundai", model="tucson")
     ]
     all_listings = []
     for source in sources:
